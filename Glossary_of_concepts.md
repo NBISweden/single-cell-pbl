@@ -60,7 +60,8 @@ Having the data in a suitable format, we can start calculating some quality metr
 
 Citing from “Simple Single Cell” workflows (Lun, McCarthy & Marioni, 2017): “High proportions are indicative of poor-quality cells (Islam et al. 2014; Ilicic et al. 2016), possibly because of loss of cytoplasmic RNA from perforated cells. The reasoning is that mitochondria are larger than individual transcript molecules and less likely to escape through tears in the cell membrane.”
 
-```{r, eval=F}
+
+```r
 # Calculating % mitochondrial genes
 SeuratObject <- PercentageFeatureSet(SeuratObject, 
                                      pattern = "^MT-",
@@ -75,7 +76,8 @@ SeuratObject <- subset(SeuratObject, cells = selected_mito)
 
 ## % Ribossomal genes
 
-```{r, eval=F}
+
+```r
 # Calculating % ribossomal genes
 SeuratObject <- PercentageFeatureSet(SeuratObject, 
                                      pattern = "^RP[SL]", 
@@ -96,7 +98,8 @@ SeuratObject <- subset(SeuratObject, cells = selected_ribo)
 
 We here perform cell cycle scoring. To score a gene list, the algorithm calculates the difference of mean expression of the given list and the mean expression of reference genes. To build the reference, the function randomly chooses a bunch of genes matching the distribution of the expression of the given list. Cell cycle scoring adds three slots in data, a score for S phase, a score for G2M phase and the predicted cell cycle phase.
 
-```{r, eval=F}
+
+```r
 SeuratObject <- CellCycleScoring(object = SeuratObject,
                                  g2m.features = cc.genes$g2m.genes,
                                  s.features = cc.genes$s.genes)
@@ -129,7 +132,8 @@ SeuratObject <- CellCycleScoring(object = SeuratObject,
 
 
 How to run it:
-```{r, eval=F}
+
+```r
 SeuratObject <- FindNeighbors(SeuratObject,
                               assay = "RNA",
                               reduction = "pca" 
@@ -156,7 +160,8 @@ Principal Component Analysis (PCA) is defined as an orthogonal **linear** transf
 <div style="text-align: right"> Adapted from [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) </div>
 
 How to run it:
-```{r, eval=F}
+
+```r
 SeuratObject <- RunPCA(object = SeuratObject,
                        assay = "RNA",
                        npcs = 100,
@@ -182,7 +187,8 @@ Usefull links:
 * [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
 
 How to run it:
-```{r, eval=F}
+
+```r
 SeuratObject <- RunTSNE(object = SeuratObject,
                         reduction = "pca",
                         perplexity=30,
@@ -210,7 +216,8 @@ The result is a practical scalable algorithm that applies to real world data. Th
 <div style="text-align: right"> [UMAP Arxiv paper](https://arxiv.org/pdf/1802.03426.pdf) </div>
 
 How to run it:
-```{r, eval=F}
+
+```r
 SeuratObject <- RunUMAP(object = SeuratObject,
                         reduction = "pca",
                         dims = 1:top_PCs,
@@ -241,7 +248,8 @@ Diffusion maps (DM) is a dimensionality reduction [...] which computes a family 
 [Diffusion Maps paper](https://www.pnas.org/content/pnas/102/21/7426.full.pdf)
 
 How to run it:
-```{r, eval=F}
+
+```r
 # Load additional libraries
 library(destiny)
 
@@ -271,12 +279,12 @@ Independent Component Analysis (ICA) is a computational method for separating a 
 <div style="text-align: right"> [Wikipedia](https://en.wikipedia.org/wiki/Independent_component_analysis) </div>
 
 How to run it:
-```{r, eval=F}
+
+```r
 SeuratObject <- RunICA(object = SeuratObject,
                        assay = "pca",
                        nics = 20,
                        reduction.name = "ica")
-
 ```
 
 <br/> 
@@ -293,7 +301,8 @@ SeuratObject <- RunICA(object = SeuratObject,
 
 <div style="text-align: right"> [Haghverdi et al (2018) *Nat Biotechnology*](https://www.nature.com/articles/nbt.4091) </div>
 
-```{r, eval=F}
+
+```r
 # Load additional libraries
 library(SeuratWrappers)
 
@@ -312,7 +321,8 @@ gc(verbose = FALSE)
 
 <div style="text-align: right"> [Stuart et al (2019) *Cell*](https://www.cell.com/cell/fulltext/S0092-8674(19)30559-8) </div>
 
-```{r, eval=F}
+
+```r
 SeuratObject.list <- SplitObject(SeuratObject, split.by = "BATCH")
 
 for (i in 1:length(SeuratObject.list)) {
@@ -342,7 +352,8 @@ SeuratObject.int <- IntegrateData(anchorset = SeuratObject.anchors,
 
 <div style="text-align: right"> [Welch et al (2019) *Cell*](https://www.cell.com/cell/pdf/S0092-8674(19)30504-5.pdf) </div>
 
-```{r, eval=F}
+
+```r
 # Load additional libraries
 library(conos)
 library(SeuratWrappers)
@@ -389,7 +400,8 @@ gc(verbose = FALSE)
 
 <div style="text-align: right"> [Barkas et al (2019) *Nat Methods*](https://www.nature.com/articles/s41592-019-0466-z) </div>
 
-```{r, eval=F}
+
+```r
 # Load additional libraries
 library(conos)
 library(SeuratWrappers)
@@ -438,7 +450,8 @@ gc(verbose = FALSE)
 <div style="text-align: right"> [Korsunsky et al (2019) *Nat Mathods*](https://www.nature.com/articles/s41592-019-0619-0) </div>
 
 
-```{r, eval=F}
+
+```r
 # Load additional libraries
 library(harmony)
 library(SeuratWrappers)
@@ -466,12 +479,12 @@ The Louvain method for community detection is a method to extract communities fr
 [Louvain Paper](https://iopscience.iop.org/article/10.1088/1742-5468/2008/10/P10008/pdf)
 
 How to run it:
-```{r, eval=F}
+
+```r
 SeuratObject <- RunICA(object = SeuratObject,
                        assay = "pca",
                        nics = 20,
                        reduction.name = "ica")
-
 ```
 
 <br/> 
