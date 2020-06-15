@@ -2,7 +2,7 @@
 Single Cell Project Based Learning (PBL)
 
 
-The idea is to learn-by-doing, using the [**Glossary of concepts**](Glossary_of_concepts.md) as guide to find and discuss advanced topics with your team mates, construct rational anlaysis decisions and build knowledge thought active learning.
+The idea is to learn-by-doing, using the [**Project_report_template**](Project_report_template.md) (download `.Rmd` file: [**.Rmd**](Project_report_template.Rmd))  [**Glossary of concepts**](Glossary_of_concepts.md) as guide to find and discuss advanced topics with your team mates, construct rational anlaysis decisions and build knowledge thought active learning.
 
 <br/>
 
@@ -67,33 +67,33 @@ N/A
 
 #### Research Analysis Tasks:
 
-**Millestone 1**
+**Milestone 1**
 
 ⁃	Find and download suitable datasets to work with (or provide the datasets)
 ⁃	Load and merge datasets
 ⁃	Define appropriate filtering thresholds
 
-**Millestone 2**
+**Milestone 2**
 
 ⁃	Integrate datasets
 ⁃	Filter noise from data
 ⁃	Visualize data (look for the appropriate dim reduction)
 ⁃	Control for confounding variables (cell cycle and ribosomal/mitochondrial percentage)
 
-**Millestone 3**
+**Milestone 3**
 
 ⁃	Check for batch effects
 ⁃	Construct graph
 ⁃	Perform clustering
 
-**Millestone 4**
+**Milestone 4**
 
 ⁃	Perform differential gene expression among clusters
 ⁃	Identify cell types of interest
 ⁃	Check your cell types with the known biology of cell differentiation in BM
 
 
-**Millestone 5 (optional)**
+**Milestone 5 (optional)**
 
 ⁃	Build trajectory embedding (change embedding variables, so you have a continuous path)
 ⁃	Define lineages
